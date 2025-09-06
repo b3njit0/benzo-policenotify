@@ -5,7 +5,8 @@ Config.Framework = "esx"
 
 Config.Main = {
     Jobs = {
-        "police", "sheriff"
+        "police", 
+        "sheriff",
     },
     Target = {
         Use = false,
@@ -29,7 +30,7 @@ Config.Main = {
         Type = "ox", -- esx_notify, ox, qb_notify, lb-tablet, npwd, roadphone, cd_dispatch, custom
     },
     Menu = {
-        Type = "ox_context", -- ox_context, ox_menu
+        Type = "ox_menu", -- ox_context, ox_menu
         Options = {
            
         },

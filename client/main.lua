@@ -148,6 +148,47 @@ Menu = function()
             }
         })
         lib.showContext('benzo:policenotify:menu')
+    elseif Config.Main.Menu.Type == "ox_menu" then
+        local menu = {
+            {
+                label       = "Quick Notify",
+                description =
+                "Send a quick notify to the police department that someone is at the front desk \n no text needed",
+                icon        = 'fa-solid fa-bell',
+            },
+            {
+                label       = 'Police Department',
+                description = 'Send an notify to all police officers \n / the whole department thats working',
+                icon        = 'fa-solid fa-user',
+            },
+            {
+                label       = 'Specific Police Officer',
+                description = 'Send an notify to a specific police officer',
+                icon        = 'fa-solid fa-users',
+            },
+            {
+                label       = "Cancel",
+                description = "Close the menu and cancel the notification",
+                icon        = 'fa-solid fa-xmark',
+            }
+        }
+        lib.registerMenu({
+            id = 'benzo:policenotify:menu',
+            title = 'Benzo Police Notify',
+            position = 'top-right',
+            options = menu,
+        }, function(selected, scrollIndex, args)
+            if selected == 1 then
+                QuickNotify()
+            elseif selected == 2 then
+                print("Option 2 selected")
+            elseif selected == 3 then
+                print("Option 3 selected")
+            elseif selected == 4 then
+                lib.hideMenu()
+            end
+        end)
+        lib.showMenu('benzo:policenotify:menu')
     end
 end
 
