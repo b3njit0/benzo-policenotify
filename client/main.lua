@@ -102,8 +102,7 @@ end
 
 QuickNotify = function()
     ESX.TriggerServerCallback("benzo:policenotify:quicknotify", function(cb)
-           print("triggered")
-         
+        print("triggered")
     end)
 end
 
@@ -151,6 +150,7 @@ Menu = function()
         lib.showContext('benzo:policenotify:menu')
     end
 end
+
 
 CreateThread(function()
     if Config.Main.Target.Use then

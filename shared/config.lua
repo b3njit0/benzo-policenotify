@@ -1,9 +1,12 @@
 Config = {}
 
 Config.Framework = "esx"
-Config.PoliceJobName = "police"
+
 
 Config.Main = {
+    Jobs = {
+        "police", "sheriff"
+    },
     Target = {
         Use = false,
         Type = "ox_target", --- ox_target, qb_target, qtarget
@@ -14,7 +17,7 @@ Config.Main = {
     },
     TextUI = {
         Use = true,  --- Target needs to be set to false
-        Type = "ox", --esx, qb, ox,
+        Type = "esx", --esx, qb, ox,
         Options = {
             Position = vec3(441.03, -981.07, 30.67),
             Text = "Press [E] to open notify menu",
