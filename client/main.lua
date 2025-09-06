@@ -189,6 +189,84 @@ Menu = function()
             end
         end)
         lib.showMenu('benzo:policenotify:menu')
+    elseif Config.Main.Menu.Type == "esx_menu_default" then
+        local elements = {
+            { label = "Quick Notify",            value = 'quicknotify',      description = "Send a quick notify to the police department that someone is at the front desk \n no text needed" },
+            { label = 'Police Department',       value = 'policedepartment', description = 'Send an notify to all police officers \n / the whole department thats working' },
+            { label = 'Specific Police Officer', value = 'specificofficer',  description = 'Send an notify to a specific police officer' },
+            { label = "Cancel",                  value = 'cancel',           description = "Close the menu and cancel the notification" }
+        }
+        ESX.UI.Menu.CloseAll()
+        ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'benzo:policenotify:menu', {
+            title    = 'Benzo Police Notify',
+            align    = 'top-right',
+            elements = elements
+        }, function(data, menu)
+            if data.current.value == 'quicknotify' then
+                QuickNotify()
+                menu.close()
+            elseif data.current.value == 'policedepartment' then
+                print("Option 2 selected")
+                menu.close()
+            elseif data.current.value == 'specificofficer' then
+                print("Option 3 selected")
+                menu.close()
+            elseif data.current.value == 'cancel' then
+                menu.close()
+            end
+        end, function(data, menu)
+            menu.close()
+        end)
+    elseif Config.Main.Menu.Type == "esx_context" then
+        local formMenu = {
+            {
+                title = 'Benzo Police Notify',
+                description = 'Select an option below to send a notification',
+                icon = 'fa-solid fa-circle-user',
+                value = 'header',
+                unselectable = true
+            },
+            {
+                title = "Quick Notify",
+                description =
+                "Send a quick notify to the police department that someone is at the front desk \n no text needed",
+                icon = 'fa-solid fa-bell',
+                value = 'quicknotify'
+            },
+            {
+                title = 'Police Department',
+                description = 'Send a notify to all police officers / the whole department that\'s working',
+                icon = 'fa-solid fa-user',
+                value = 'policedepartment'
+            },
+            {
+                title = 'Specific Police Officer',
+                description = 'Send a notify to a specific police officer',
+                icon = 'fa-solid fa-users',
+                value = 'specificofficer'
+            },
+            {
+                title = "Cancel",
+                description = "Close the menu and cancel the notification",
+                icon = 'fa-solid fa-xmark',
+                value = 'cancel'
+            }
+        }
+        ESX.OpenContext('right', formMenu, function(menu, element)
+
+            if element.value == 'quicknotify' then
+                QuickNotify()
+            elseif element.value == 'policedepartment' then
+                print("Option 2 selected")
+            elseif element.value == 'specificofficer' then
+                print("Option 3 selected")
+            end
+
+    
+
+            ESX.CloseContext()
+        end, function()
+        end)
     end
 end
 
