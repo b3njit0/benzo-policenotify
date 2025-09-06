@@ -5,7 +5,7 @@ Config.Framework = "esx"
 
 Config.Main = {
     Jobs = {
-        "police", 
+        "police",
         "sheriff",
     },
     Target = {
@@ -17,7 +17,7 @@ Config.Main = {
         },
     },
     TextUI = {
-        Use = true,  --- Target needs to be set to false
+        Use = true,   --- Target needs to be set to false
         Type = "esx", --esx, qb, ox,
         Options = {
             Position = vec3(441.03, -981.07, 30.67),
@@ -30,10 +30,12 @@ Config.Main = {
         Type = "ox", -- esx_notify, ox, qb_notify, lb-tablet, npwd, roadphone, cd_dispatch, custom
     },
     Menu = {
-        Type = "esx_context", -- ox_context, ox_menu, esx_menu_default, esx_context 
+        Type = "ox_context", -- ox_context, ox_menu, esx_menu_default, esx_context
         Options = {
-           
+
         },
+        DialogMenu = { -- Used to input the message for the notify
+            Type = "ox", -- ox, esx_dialog_menu, 
+        }
     }
 }
-

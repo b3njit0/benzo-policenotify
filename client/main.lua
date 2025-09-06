@@ -126,7 +126,7 @@ Menu = function()
                     description = 'Send an notify to all police officers \n / the whole department thats working',
                     icon = 'fa-solid fa-user',
                     onSelect = function()
-                        print("Option 1 selected")
+                        DialogMenu()
                     end
                 },
                 {
@@ -253,7 +253,6 @@ Menu = function()
             }
         }
         ESX.OpenContext('right', formMenu, function(menu, element)
-
             if element.value == 'quicknotify' then
                 QuickNotify()
             elseif element.value == 'policedepartment' then
@@ -262,8 +261,81 @@ Menu = function()
                 print("Option 3 selected")
             end
 
-    
 
+
+            ESX.CloseContext()
+        end, function()
+        end)
+    end
+end
+
+DialogMenu = function()
+    if Config.Main.Menu.DialogMenu.Type == "ox" then
+        local input = lib.inputDialog('Benzo Police Notify', {
+            { type = 'input', label = 'Message', icon = 'envelope', required = true },
+        })
+
+        if not input then return end
+        local message = input[1]
+        if message == nil or message == "" then
+            return lib.notify({
+                title = 'Benzo Police Notify',
+                description = 'You must enter a message',
+                type = 'error'
+            })
+        else
+            print(message)
+        end
+    elseif Config.Main.Menu.DialogMenu.Type == "esx_dialog_menu" then
+        ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'benzo:policenotify:dialog', {
+            title = 'Enter your message'
+        }, function(data, menu)
+            local message = data.value
+            if message == nil or message == "" then
+                ESX.ShowNotification('You must enter a message')
+                return
+            else
+                print(message)
+            end
+            menu.close()
+        end, function(data, menu)
+            menu.close()
+        end)
+    elseif Config.Main.Menu.DialogMenu.Type == "esx_context" then
+        local inputMenu = {
+            {
+                title = 'Enter your message',
+                description = 'Type the message to send to the police department',
+                icon = 'fa-solid fa-envelope',
+                input = true,
+                inputType = 'text',
+                inputPlaceholder = 'Placeholder...',
+                name = 'message_input'
+            },
+            {
+                title = "Send",
+                description = "Send the message",
+                icon = 'fa-solid fa-paper-plane',
+                name = 'submit'
+            },
+            {
+                title = "Cancel",
+                description = "Cancel and close",
+                icon = 'fa-solid fa-xmark',
+                name = 'cancel'
+            }
+        }
+        local userInput = ""
+        ESX.OpenContext('right', inputMenu, function(menu, element)
+            if element.name ~= 'submit' then
+                return
+            end
+
+            for _, element in ipairs(menu.eles) do
+                if element.input then
+                    print(element.inputValue)
+                end
+            end
             ESX.CloseContext()
         end, function()
         end)
