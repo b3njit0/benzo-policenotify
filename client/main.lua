@@ -270,7 +270,7 @@ Menu = function()
 end
 
 DialogMenu = function()
-    if Config.Main.Menu.DialogMenu.Type == "ox" then
+    if Config.Main.DialogMenu.Type == "ox" then
         local input = lib.inputDialog('Benzo Police Notify', {
             { type = 'input', label = 'Message', icon = 'envelope', required = true },
         })
@@ -286,7 +286,7 @@ DialogMenu = function()
         else
             print(message)
         end
-    elseif Config.Main.Menu.DialogMenu.Type == "esx_dialog_menu" then
+    elseif Config.Main.DialogMenu.Type == "esx_dialog_menu" then
         ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'benzo:policenotify:dialog', {
             title = 'Enter your message'
         }, function(data, menu)
@@ -301,7 +301,7 @@ DialogMenu = function()
         end, function(data, menu)
             menu.close()
         end)
-    elseif Config.Main.Menu.DialogMenu.Type == "esx_context" then
+    elseif Config.Main.DialogMenu.Type == "esx_context" then
         local inputMenu = {
             {
                 title = 'Enter your message',

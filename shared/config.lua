@@ -31,11 +31,8 @@ Config.Main = {
     },
     Menu = {
         Type = "ox_context", -- ox_context, ox_menu, esx_menu_default, esx_context
-        Options = {
-
-        },
-        DialogMenu = { -- Used to input the message for the notify
-            Type = "ox", -- ox, esx_dialog_menu, 
-        }
+    },
+    DialogMenu = {           -- Used to input the message for the notify
+        Type = "ox",         -- ox, esx_dialog_menu,
     }
 }
